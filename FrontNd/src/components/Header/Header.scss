@@ -1,0 +1,236 @@
+@import "../../css-config/mixins.scss";
+*{
+    padding: 0px;
+    margin: 0;
+    box-sizing: border-box;
+    color:white;
+    overflow-anchor: none;
+    // background-color: black;
+}
+.header{
+    background-color: black;
+}
+.Nav p{
+    margin: 0;
+    margin-left:5px;
+}
+.Nav{
+  z-index: 100;
+  display:  flex; 
+  width: 100%;
+  justify-content: space-evenly;
+  padding-top: 1vh;
+  padding-bottom:1vh ;
+  align-items: center;
+  svg{
+    cursor: pointer;
+    color: #e77021;
+    width: 2vw;
+    // height: 3vh;
+  }
+  &.Navsticky{
+    top: 0;
+    position: sticky;
+    animation: Nav-sticky 0.3s ease-in-out forwards;
+  }
+  &.Nav.Navsticky::after {
+    position: absolute;
+    content: "";
+    height: 0.5px;
+    width: 100%;
+    background:#e77021;
+    bottom: 0px;
+    left: 0px;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transform-origin: center;
+    animation: Nav-line 0.3s forwards;
+}
+}
+@keyframes Nav-line{
+    0%{
+        transform: scaleX(0%);
+    }
+    100%{
+        transform: scaleX(100%);
+    }
+}
+@keyframes Nav-sticky {
+    0% {
+        transform: translateY(-88px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+.Nav img {
+    width:15vw;
+    cursor: pointer;
+}
+.nav2{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    right: -2vw;
+}
+.login{
+    display: flex;
+    align-items: center;
+    margin-right: 2.7vw;
+    @include md{
+     svg{
+        fill: #e77021;
+     }
+    }
+}
+
+.cart{
+    display: flex;
+    align-items: center;
+    margin-right:2.7vw;
+    span{
+        position: relative;
+        line-height: 1;
+        border-radius: 50%;
+        background-color: #e77021;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 25px;
+        width: 25px;
+        top: -11px;
+        right: 7px;
+        p{  color: white;
+            font-weight: bold;
+            background-color: #e77021;
+            font-size: 15px;
+            width:15px;
+            height:15px;
+            margin: auto auto;
+            text-align: center;
+        }
+    }
+    @include md{
+        svg{
+           fill: #e77021;
+        }
+       }
+    
+}
+.wish{
+    display: flex;
+    align-items: center;
+    margin-right: 2.7vw;
+    @include md{
+        svg{
+           fill: #e77021;
+        }
+       }
+}
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+    left: 5.5vw;
+    svg{
+        height: 3vh;
+      }
+}
+.search:focus{
+    svg{
+        fill: #e77021;
+    }
+}
+.search input{
+ border: 2px solid rgba(79, 73, 73, 0.337);
+ padding: 1.2vh 10vw;
+ outline: none;
+ border-radius: 50px;
+ margin-right: 1vw;
+}
+.search input:focus{
+    border: 2px solid #e77021;
+    transition: all 150ms ease-in;
+}
+.search input::placeholder{
+    position: relative;
+    left:12px;
+}
+.searchIcon{
+    color: #e77021;
+    transition: all 250ms ease-in-out;
+    position: relative;
+    right:5vw;
+}
+.searchIcon :hover{
+    border-radius: 2px;
+    color: #e77021;
+    transition: all 250ms ease-in-out;
+}
+.loginIcon{
+    color: #e77021;
+}
+.Nav p{
+    cursor: pointer;
+}
+.Nav p:hover{
+  color: #e77021;
+  transition: all 250ms ease-in-out;
+}
+@media (max-width:835px){
+ .Nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin: 0;
+    svg{
+        width: 8vw;
+    height: 6vh;
+    }
+    &.Navsticky{
+            .search{
+                display: none;
+            }
+          }
+ }
+ .nav2{
+    gap: 20vw;
+    font-size: 0;
+    .cart{
+        span{
+            font-size:20px; 
+        }
+    }
+    justify-content: space-between;
+ }
+ .search{
+    order: 1;
+    margin: 0;
+    // display: flex;
+    // justify-content: center;
+    svg{
+        height: 5vh;
+    }
+    // width: 80vw;
+ }
+ .search input{
+    position: relative;
+    right: 1.75vw;
+    margin: 0;
+    font-size: 23px;
+    // margin-right: 4.5vw;
+ }
+ .search input::placeholder{
+    font-size: 0;
+ }
+ .Nav img{
+    width: 30vw;
+ }
+ .searchIcon{
+    right:16vw;
+ }
+
+}

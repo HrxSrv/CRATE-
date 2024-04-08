@@ -1,0 +1,79 @@
+@import "../../../css-config/mixins.scss"; 
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+    left: 0vw;
+    svg{
+        height: 3vh;
+      }
+    background-color: black;
+    
+}
+.search:focus{
+    svg{
+        fill: #e77021;
+    }
+}
+.search input{
+ border: 1px solid rgba(197, 197, 197, 0.337);
+ padding: 1.2vh 10vw;
+ outline: none;
+ border-radius:40px ;
+ background-color: black;
+ margin-right: 1vw;
+}
+.search input:focus{
+    border: 2px solid #e77021;
+    transition: all 150ms ease-in;
+    svg{
+        fill: #e77021;
+    }
+}
+.search input::placeholder{
+    position: relative;
+    left:12px;
+}
+.searchIcon{
+    transition: all 250ms ease-in-out;
+    position: relative;
+    right:5vw;
+}
+.searchIcon :hover{
+    border-radius: 2px;
+    svg{
+        fill: #e77021;
+    }
+    transition: all 250ms ease-in-out;
+}
+@media (max-width:835px){
+    .Nav{
+       &.Navsticky{
+               .search{
+                   display: none;
+               }
+             }
+    }
+    .search{
+       order: 1;
+       margin: 0;
+       svg{
+           height: 5vh;
+       }
+    }
+    .search input{
+       position: relative;
+       padding: 1vh 14vw;
+       right: 1.7vw;   
+       margin: 0;
+       font-size: 18px;
+    }
+    .search input::placeholder{
+       font-size: 0;
+    }
+    .searchIcon{
+       right:16vw;
+    }
+   
+   }
