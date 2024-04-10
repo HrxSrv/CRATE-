@@ -15,7 +15,9 @@ def scrape_amazon_search(keyword):
         'sec-fetch-mode': 'navigate',
         'sec-fetch-dest': 'document',
         'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-    }
+   }
+
+    
     try:
         search_url = f'https://www.amazon.in/s?k={keyword.replace(" ", "+")}'
         response = requests.get(search_url, headers=headers)
@@ -26,7 +28,7 @@ def scrape_amazon_search(keyword):
         for product in products:
            if(product): 
             title_element = product.find('span', class_='a-size-medium a-color-base a-text-normal')
-            price_element = product.find('span', class_='a-offscreen')
+            price_element = product.find('span', class_='a-price-whole')
             link_element = product.find('a', class_='a-link-normal s-no-hover s-underline-text s-underline-link-text s-link-style a-text-normal')
             img_element = product.find('img', class_='s-image') 
             if img_element and title_element:
@@ -47,7 +49,7 @@ def scrape_amazon_search(keyword):
 
             if link_element and title_element:
                 link = link_element.get('href', '')
-                link = f"Product Link:  https://www.amazon.in/{link}" 
+                link = "Product Link:  https://www.amazon.in/{link}" 
             else:
                 continue 
             product_amazon.append({"title":product_title,"price":product_price,"img":img,"link":link})          
@@ -79,7 +81,7 @@ def scrape_amazon_search(keyword):
 
             if link_element and title_element:
                 link = link_element.get('href', '')
-                link = f"Product Link:  https://www.amazon.in/{link}" 
+                link = "Product Link:  https://www.amazon.in/{link}" 
             else:
                 continue 
             product_amazon.append({"title":product_title,"price":product_price,"img":img,"link":link})          
@@ -132,6 +134,7 @@ def scrape_flipkart_search(keyword):
                 continue
             if title_element and price_element:
                 product_price = price_element.get_text(strip=True)
+                product_price = product_price.replace("₹", "")
                 # print(f"Product Price: {product_price}")
             else:
                 continue    
@@ -171,7 +174,7 @@ def scrape_flipkart_search(keyword):
 
             if link_element and title_element:
                 link = link_element.get('href', '')
-                link = f"Product Link:  https://flipkart.com/{link}" 
+                link = "Product Link:  https://flipkart.com/{link}" 
             else:
                 continue 
             product_flipkart.append({"title":product_title,"price":product_price,"img":img,"link":link})          
@@ -184,8 +187,8 @@ def scrape_flipkart_search(keyword):
     except requests.exceptions.RequestException as err:
         print(f"Request Error: {err}")
     return product_flipkart    
-# search_keyword = ''
+# search_keyword = 'laptop'
 # print("results from flipkart")
-# scrape_flipkart_search()
-# # print("results from amazon")
+# scrape_flipkart_search(search_keyword)
+# print("results from amazon")
 # scrape_amazon_search(search_keyword)
